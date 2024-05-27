@@ -18,4 +18,5 @@ public class Catalog
     public Review[] Reviews { get; set; }
     public Content[] TableOfContents { get; set; }
     public int LibraryId { get; set; }
+    public string ResourceTypeId { get; set; }
 }
