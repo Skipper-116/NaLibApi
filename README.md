@@ -1,4 +1,4 @@
-# National Library Information System
+# National Library Information System API
 
 Welcome to National Library Information System! In this guide, I'll walk you through the steps to install ASP.NET Core 8, build, and run this application.
 
@@ -32,7 +32,11 @@ Before you begin, make sure you have the following prerequisites installed on yo
 ## Running the Application
 
 To run the application, use the following command:
+```bash
+ dotnet run
+```
 
-    ```bash
-    dotnet run
-    ```
+## Code of Conduct
+Use the following standards when contributing to this project:
+* [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md)
+
