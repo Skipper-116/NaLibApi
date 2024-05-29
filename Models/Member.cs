@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NaLibApi.Models
 {
-    public sealed class Member
+    public sealed class Member : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

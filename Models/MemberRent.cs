@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NaLibApi.Models
 {
-    public sealed class MemberRent
+    public sealed class MemberRent  : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,7 +20,7 @@ namespace NaLibApi.Models
         // To capture who processed the return of the resource
         public int ProcessedBy { get; set; }
         public required int CreatedBy { get; set; }
-        public required int UpdatedBy { get; set; }
+        public required int? UpdatedBy { get; set; }
         public bool Voided { get; set; }
         public int? VoidedBy { get; set; }
         public DateTime? VoidedOn { get; set; }

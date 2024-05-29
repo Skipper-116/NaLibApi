@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NaLibApi.Models
 {
-    public sealed class UserSkill
+    public sealed class UserSkill : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

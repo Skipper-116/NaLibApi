@@ -1,5 +1,5 @@
 using NaLibApi.Data;
-using NaLibApi.Models
+using NaLibApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<NaLibDbContext>(options =>
 {
-    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-    x=>x.MigrationHistoryTable("__EFMigrationsHistory", Configuration.GetSection("Schema").GetSection("NaLib").Value));
-    );
+    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
 });
 
 // Add services to the container.

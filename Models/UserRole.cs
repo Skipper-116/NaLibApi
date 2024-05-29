@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NaLibApi.Models
 {
-    public sealed class UserRole
+    public sealed class UserRole : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -8,9 +11,9 @@ namespace NaLibApi.Models
         public required int RoleId { get; set; }
         public required int UserId { get; set; }
         public required int CreatedBy { get; set; }
-        public required int UpdatedBy { get; set; }
+        public required int? UpdatedBy { get; set; }
         public bool Voided { get; set; }
-        public int VoidedBy { get; set; }
+        public int? VoidedBy { get; set; }
         public DateTime VoidedOn { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

@@ -1,9 +1,13 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+
 namespace NaLibApi.Models
 {
     public class Catalog
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Title { get; set; }
         public string[] Authors { get; set; }
@@ -24,15 +28,9 @@ namespace NaLibApi.Models
         public int LibraryId { get; set; }
         public string ResourceTypeId { get; set; }
         public int CreatedBy { get; set; }
-
-        // Navigation properties
-        [ForeignKey("LibraryId")]
-        public Library Library { get; set; }
-
-        [ForeignKey("ResourceTypeId")]
-        public ResourceType ResourceType { get; set; }
-
-        [ForeignKey("CreatedBy")]
-        public User CreatedByUser { get; set; }
+        public int UpdatedBy { get; set; }
+        public bool Voided { get; set; }
+        public int? VoidedBy { get; set; }
+        public DateTime? VoidedOn { get; set; }
     }
 }

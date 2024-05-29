@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NaLibApi.Models
 {
-    public sealed class User
+    public sealed class User : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -31,5 +34,18 @@ namespace NaLibApi.Models
 
         [ForeignKey("VoidedBy")]
         public User VoidedByUser { get; set; }
+
+        // Collection navigation properties
+        public ICollection<UserSkill> UserSkills { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<UserGrade> UserGrades { get; set; }
+        public ICollection<UserExperience> UserExperiences { get; set; }
+        public ICollection<UserContact> UserContacts { get; set; }
+        public ICollection<RoleAccess> RoleAccesses { get; set; }
+        public ICollection<Role> Roles { get; set; }
+        public ICollection<Member> Members { get; set; }
+        public ICollection<MemberContact> MemberContacts { get; set; }
+        public ICollection<MemberRent> MemberRents { get; set; }
+        public ICollection<ContactType> ContactTypes { get; set; }
     }
 }

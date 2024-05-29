@@ -1,10 +1,15 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
+
 namespace NaLibApi.Models
 {
     public class CatalogEvent
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string EventType { get; set; }
         public string CatalogId { get; set; }
 
@@ -16,15 +21,5 @@ namespace NaLibApi.Models
         // timestamp for when the event was created
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        // Navigation properties
-        [ForeignKey("CreatedBy")]
-        public User CreatedByUser { get; set; }
-
-        [ForeignKey("UpdatedBy")]
-        public User UpdatedByUser { get; set; }
-
-        [ForeignKey("VoidedBy")]
-        public User VoidedByUser { get; set; }
     }
 }

@@ -40,14 +40,5 @@ namespace NaLibApi.Models
         //lend out limit
         [BsonElement("lendOutLimit")]
         public int LendOutLimit { get; set; }
-        
-        [ForeignKey("CreatedBy")]
-        public User CreatedByUser { get; set; }
-
-        [ForeignKey("UpdatedBy")]
-        public User UpdatedByUser { get; set; }
-
-        [ForeignKey("VoidedBy")]
-        public User VoidedByUser { get; set; }
     }
 }
