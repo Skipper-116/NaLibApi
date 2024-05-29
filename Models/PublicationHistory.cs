@@ -1,5 +1,11 @@
-public class PublicationHistory
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NaLibApi.Models
 {
-    public string Edition { get; set; }
-    public int Year { get; set; }
+    [NotMapped]
+    public class PublicationHistory
+    {
+        public string Edition { get; set; }
+        public int Year { get; set; }
+    }
 }

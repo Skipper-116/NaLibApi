@@ -1,5 +1,11 @@
-public class Content
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NaLibApi.Models
 {
-    public string Chapter { get; set; }
-    public string Subject { get; set; }
+    [NotMapped]
+    public class Content
+    {
+        public string Chapter { get; set; }
+        public string Subject { get; set; }
+    }
 }

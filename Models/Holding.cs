@@ -1,5 +1,11 @@
-public class Holding
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NaLibApi.Models
 {
-    public string Status { get; set; }
-    public DateTime StatusDate { get; set; }
+    [NotMapped]
+    public class Holding
+    {
+        public string Status { get; set; }
+        public DateTime StatusDate { get; set; }
+    }
 }

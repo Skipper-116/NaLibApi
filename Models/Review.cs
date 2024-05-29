@@ -1,6 +1,12 @@
-public class Review
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NaLibApi.Models
 {
-    public int Rating { get; set; }
-    public string Reviewer { get; set; }
-    public string Comments { get; set; }
+    [NotMapped]
+    public class Review
+    {
+        public int Rating { get; set; }
+        public string Reviewer { get; set; }
+        public string Comments { get; set; }
+    }
 }
