@@ -16,5 +16,15 @@ namespace NaLibApi.Models
         public int? VoidedBy { get; set; }
         public DateTime? VoidedOn { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        // Navigation properties
+        [ForeignKey("CreatedBy")]
+        public User CreatedByUser { get; set; }
+
+        [ForeignKey("UpdatedBy")]
+        public User UpdatedByUser { get; set; }
+
+        [ForeignKey("VoidedBy")]
+        public User VoidedByUser { get; set; }
     }
 }

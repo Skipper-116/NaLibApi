@@ -23,5 +23,16 @@ namespace NaLibApi.Models
         public Content[] TableOfContents { get; set; }
         public int LibraryId { get; set; }
         public string ResourceTypeId { get; set; }
+        public int CreatedBy { get; set; }
+
+        // Navigation properties
+        [ForeignKey("LibraryId")]
+        public Library Library { get; set; }
+
+        [ForeignKey("ResourceTypeId")]
+        public ResourceType ResourceType { get; set; }
+
+        [ForeignKey("CreatedBy")]
+        public User CreatedByUser { get; set; }
     }
 }

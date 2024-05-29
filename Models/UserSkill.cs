@@ -16,6 +16,9 @@ namespace NaLibApi.Models
         public DateTime UpdatedAt { get; set; }
 
         // Navigation properties
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+        
         [ForeignKey("CreatedBy")]
         public User CreatedByUser { get; set; }
 
