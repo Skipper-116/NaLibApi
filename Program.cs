@@ -11,6 +11,9 @@ builder.Services.AddDbContext<NaLibDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
 });
 
+// Add mongodb connection string to the configuration
+builder.Services.Configure<NoSQLDbContext>(builder.Configuration.GetSection("NoSQLConnection"));
+
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -7,5 +7,12 @@
   },
   "ConnectionStrings": {
     "DefaultConnection": "Server=127.0.0.1;Port=5432;Database=Nalib;Username=username;Password=strong_password;"
+  },
+  "NoSQLConnection": {
+    "ConnectionString": "mongodb://username:strongpassword@localhost:27017/?authMechanism=DEFAULT",
+    "DatabaseName": "LibaryDB",
+    "CatalogCollectionName": "Catalogs",
+    "CatalogsEventsCollectionName": "CatalogsEvents",
+    "ResourceTypesCollectionName": "ResourceTypes"
   }
 }
