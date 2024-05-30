@@ -39,6 +39,11 @@ namespace NaLibApi.Models
         public DateTime? VoidedOn { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [JsonIgnore]
+        public DateTime? PasswordExpiresAt { get; set; }
+        [StringLength(150, MinimumLength = 10)]
+        [JsonIgnore]
+        public string? AccessToken { get; set; }
 
         // Navigation properties
         [ForeignKey("LibraryId")]
@@ -80,5 +85,9 @@ namespace NaLibApi.Models
         public ICollection<MemberRent>? MemberRents { get; set; }
         [JsonIgnore]
         public ICollection<ContactType>? ContactTypes { get; set; }
+        [JsonIgnore, NotMapped]
+        public ICollection<Library>? Libraries { get; set; }
+        [JsonIgnore]
+        public ICollection<ResourceStatus>? ResourceStatuses { get; set; }
     }
 }

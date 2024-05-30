@@ -1,23 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using NaLibApi.Models;
 
-namespace NaLibApi.Models
-{
-    public sealed class UserContact : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
+namespace NaLibApi.Models;
+
+public class ResourceStatus  : Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required(ErrorMessage = "User is required")]
-        public int UserId { get; set; }
-        [Required(ErrorMessage = "Contact type is required")]
-        public int ContactTypeId { get; set; }
-        [Required(ErrorMessage = "Contact is required")]
-        [StringLength(150, MinimumLength = 6, ErrorMessage = "Contact must be between 6 and 150 characters")]
-        public string? Contact { get; set; }
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(150, MinimumLength = 6, ErrorMessage = "Name must be between 6 and 150 characters")]
+        public string Name { get; set; }
         [Required(ErrorMessage = "Creator is required")]
-        public string ContactLabel => $"{ContactType?.Name}";
         [JsonIgnore]
         public int CreatedBy { get; set; }
         [JsonIgnore]
@@ -31,15 +27,6 @@ namespace NaLibApi.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        // Navigation properties
-        [ForeignKey("UserId")]
-        [JsonIgnore]
-        public User User { get; set; }
-
-        [ForeignKey("ContactTypeId")]
-        [JsonIgnore]
-        public ContactType ContactType { get; set; }
-
         [ForeignKey("CreatedBy")]
         [JsonIgnore]
         public User CreatedByUser { get; set; }
@@ -51,5 +38,12 @@ namespace NaLibApi.Models
         [ForeignKey("VoidedBy")]
         [JsonIgnore]
         public User VoidedByUser { get; set; }
+
+        [ForeignKey("ProcessedBy")]
+        [JsonIgnore]
+        public User ProcessedByUser { get; set; }
+
+        // Navigation properties
+        [JsonIgnore]
+        public ICollection<MemberRent> MemberRents { get; set; }
     }
-}

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -12,24 +13,38 @@ namespace NaLibApi.Models
         public string Id { get; set; }
 
         [BsonElement("name")]
+        [BsonRequired]
+        [BsonRepresentation(BsonType.String)]
         public string Name { get; set; }
 
         [BsonElement("description")]
+        [BsonRequired]
+        [BsonRepresentation(BsonType.String)]
         public string Description { get; set; }
 
         [BsonElement("createdBy")]
+        [BsonRequired]
+        [BsonRepresentation(BsonType.Int32)]
+        [JsonIgnore]
         public int CreatedBy { get; set; }
 
         [BsonElement("updatedBy")]
-        public int UpdatedBy { get; set; }
+        [BsonRepresentation(BsonType.Int32)]
+        [JsonIgnore]
+        public int? UpdatedBy { get; set; }
 
         [BsonElement("voided")]
+        [JsonIgnore]
         public bool Voided { get; set; }
 
         [BsonElement("voidedBy")]
-        public int VoidedBy { get; set; }
+        [BsonRepresentation(BsonType.Int32)]
+        [JsonIgnore]
+        public int? VoidedBy { get; set; }
 
         [BsonElement("voidedOn")]
+        [BsonRepresentation(BsonType.DateTime)]
+        [JsonIgnore]
         public DateTime VoidedOn { get; set; }
 
         [BsonElement("createdAt")]
@@ -40,6 +55,7 @@ namespace NaLibApi.Models
 
         //lend out limit
         [BsonElement("lendOutLimit")]
+        [BsonRepresentation(BsonType.Int32)]
         public int LendOutLimit { get; set; }
     }
 }

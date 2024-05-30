@@ -1,36 +1,51 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace NaLibApi.Models
 {
-    public sealed class UserGrade : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
+    public class UserGrade : Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public required string Grade { get; set; }
-        public required int UserId { get; set; }
-        public required DateTime StartDate { get; set; }
+        [Required(ErrorMessage = "Grade is required")]
+        [StringLength(150, MinimumLength = 6, ErrorMessage = "Grade must be between 6 and 150 characters")]
+        public string Grade { get; set; }
+        [Required(ErrorMessage = "User is required")]
+        public int UserId { get; set; }
+        [Required(ErrorMessage = "Start date is required")]
+        public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        [Required(ErrorMessage = "Creator is required")]
+        [JsonIgnore]
         public required int CreatedBy { get; set; }
+        [JsonIgnore]
         public required int? UpdatedBy { get; set; }
+        [JsonIgnore]
         public bool Voided { get; set; }
+        [JsonIgnore]
         public int? VoidedBy { get; set; }
+        [JsonIgnore]
         public DateTime VoidedOn { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         // Navigation properties
         [ForeignKey("UserId")]
+        [JsonIgnore]
         public User User { get; set; }
         
         [ForeignKey("CreatedBy")]
+        [JsonIgnore]
         public User CreatedByUser { get; set; }
 
         [ForeignKey("UpdatedBy")]
+        [JsonIgnore]
         public User UpdatedByUser { get; set; }
 
         [ForeignKey("VoidedBy")]
+        [JsonIgnore]
         public User VoidedByUser { get; set; }
     }
 }

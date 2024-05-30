@@ -23,6 +23,8 @@ namespace NaLibApi.Data
         public DbSet<MemberContact> MemberContacts { get; set; }
         public DbSet<MemberRent> MemberRents { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
+        public DbSet<ResourceStatus> ResourceStatuses { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
