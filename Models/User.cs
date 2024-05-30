@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NaLibApi.Models
 {
-    public sealed class User : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
+    public class User : NaLibApi.Interfaces.ICreatedUpdatedVoidedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public required string FirstName { get; set; }
+        [Required(ErrorMessage = "Given name is required")]
+        public string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
