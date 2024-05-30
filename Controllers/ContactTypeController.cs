@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using NaLibApi.Models;
 using NaLibApi.DTO;
 using NaLibApi.Services;
@@ -6,13 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace NaLibApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/v1/[controller]")]
 public class ContactTypeController : ControllerBase
 {
     private readonly ContactTypeService _contactTypeService;
 
-    public ContactTypeController(ContactTypeService ContactTypeService) =>
-        _contactTypeService = ContactTypeService;
+    public ContactTypeController(ContactTypeService contactTypeService) =>
+        _contactTypeService = contactTypeService;
 
     [HttpGet]
     public async Task<List<ContactType>> Get() =>
@@ -21,35 +23,36 @@ public class ContactTypeController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<ContactType>> Get(int id)
     {
-        var ContactType = await _contactTypeService.GetAsync(id);
+        var contactType = await _contactTypeService.GetAsync(id);
 
-        if (ContactType is null)
+        if (contactType is null)
         {
             return NotFound();
         }
 
-        return ContactType;
+        return contactType;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(ContactTypeDto newContactType)
+    public async Task<ActionResult<ContactType>> Post(ContactTypeDto data)
     {
-        await _contactTypeService.CreateAsync(newContactType);
-
-        return CreatedAtAction(nameof(Get), new { id = newContactType.Id }, newContactType);
+        var userId = HttpContext.Items["UserId"] != null ? int.Parse(HttpContext.Items["UserId"].ToString()) : 0;
+        var result = await _contactTypeService.CreateAsync(data, userId);
+        return result;
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, ContactTypeDto updatedContactType)
     {
-        var ContactType = await _contactTypeService.GetAsync(id);
+        var userId = HttpContext.Items["UserId"] != null ? int.Parse(HttpContext.Items["UserId"].ToString()) : 0;
+        var contactType = await _contactTypeService.GetAsync(id);
 
-        if (ContactType is null)
+        if (contactType is null)
         {
             return NotFound();
         }
 
-        await _contactTypeService.UpdateAsync(id, updatedContactType);
+        await _contactTypeService.UpdateAsync(id, updatedContactType, userId);
 
         return NoContent();
     }
@@ -57,14 +60,15 @@ public class ContactTypeController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var ContactType = await _contactTypeService.GetAsync(id);
+        var userId = HttpContext.Items["UserId"] != null ? int.Parse(HttpContext.Items["UserId"].ToString()) : 0;
+        var contactType = await _contactTypeService.GetAsync(id);
 
-        if (ContactType is null)
+        if (contactType is null)
         {
             return NotFound();
         }
 
-        await _contactTypeService.RemoveAsync(id);
+        await _contactTypeService.RemoveAsync(id, userId);
 
         return NoContent();
     }

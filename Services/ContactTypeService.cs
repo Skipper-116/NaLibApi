@@ -30,20 +30,23 @@ public class ContactTypeService
             .FirstOrDefaultAsync();
     }
 
-    public async Task CreateAsync(ContactTypeDto data)
+    public async Task<ContactType> CreateAsync(ContactTypeDto data, int userId)
     {   
         var newContactType = new ContactType
         {
             Name = data.Name,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            Voided = false
+            Voided = false,
+            CreatedBy = userId,
+            UpdatedBy = null
         }; 
         _dbContext.ContactTypes.Add(newContactType);
         await _dbContext.SaveChangesAsync();
+        return newContactType;
     }
 
-    public async Task UpdateAsync(int id, ContactTypeDto data)
+    public async Task UpdateAsync(int id, ContactTypeDto data, int userId)
     {
         var contactType = await _dbContext.ContactTypes.FindAsync(id);
         if (contactType == null || contactType.Voided)
@@ -52,18 +55,20 @@ public class ContactTypeService
         }
         contactType.Name = data.Name;
         contactType.UpdatedAt = DateTime.Now;
+        contactType.UpdatedBy = userId;
         _dbContext.ContactTypes.Update(contactType);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task RemoveAsync(int id)
+    public async Task RemoveAsync(int id, int userId)
     {
         var contactType = await _dbContext.ContactTypes.FindAsync(id);
         if (contactType != null)
         {
             contactType.Voided = true;
             contactType.VoidedOn = DateTime.Now;
-            _dbContext.ContactTypes.Remove(contactType);
+            contactType.VoidedBy = userId;
+            _dbContext.ContactTypes.Update(contactType);
             await _dbContext.SaveChangesAsync();
         }
     }

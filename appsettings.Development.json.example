@@ -14,5 +14,10 @@
     "CatalogCollectionName": "Catalogs",
     "CatalogsEventsCollectionName": "CatalogsEvents",
     "ResourceTypesCollectionName": "ResourceTypes"
+  },
+  "Jwt": {
+    "Issuer": "Nalib",
+    "Audience": "Nalib",
+    "Key": "supersecretkey@123"
   }
 }
