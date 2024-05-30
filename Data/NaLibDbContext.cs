@@ -8,7 +8,9 @@ namespace NaLibApi.Data
     public class NaLibDbContext : DbContext
     {
         public NaLibDbContext(DbContextOptions<NaLibDbContext> options)
-            : base(options) { }
+            : base(options)
+        {
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Library> Libraries { get; set; }
@@ -33,6 +35,24 @@ namespace NaLibApi.Data
                 var method = SetRelationshipsMethod.MakeGenericMethod(entityType.ClrType);
                 method.Invoke(this, new object[] { modelBuilder });
             }
+
+            // disable referential integrity and insert default user
+            // we need to check if the user exists before inserting
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Password = BCrypt.Net.BCrypt.HashPassword("admin"),
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    Email = "admin@test.com",
+                    CreatedBy = 1,
+                    UpdatedBy = 1,
+                    VoidedBy = null,
+                    Voided = false,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                });
         }
 
         private static readonly MethodInfo SetRelationshipsMethod =

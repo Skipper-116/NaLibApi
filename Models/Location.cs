@@ -11,6 +11,8 @@ public class Location : Interfaces.ICreatedUpdatedVoidedEntity
     [Required(ErrorMessage = "Location name is required"),
      StringLength(150, MinimumLength = 6, ErrorMessage = "Location name must be between 3 and 150 characters")]
     public string? Name { get; set; }
+    [StringLength(150, MinimumLength = 2)]
+    public string? Description { get; set; }
     [Required(ErrorMessage = "Creator is required"), JsonIgnore]
     public int CreatedBy { get; set; }
     [JsonIgnore]
