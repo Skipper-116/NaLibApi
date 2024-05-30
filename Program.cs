@@ -17,6 +17,8 @@ builder.Services.Configure<NoSQLDbContext>(configuration.GetSection("NoSQLConnec
 
 // Add services to the container.  
 builder.Services.AddSingleton<CatalogService>();
+builder.Services.AddSingleton<CatalogEventService>();
+builder.Services.AddSingleton<ResourceTypeService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
