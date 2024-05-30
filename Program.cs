@@ -10,6 +10,7 @@ var configuration = builder.Configuration;
 builder.Services.AddProjectServices(configuration);
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddProjectSecurity(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,7 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

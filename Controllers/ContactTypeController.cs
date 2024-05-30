@@ -1,4 +1,5 @@
 using NaLibApi.Models;
+using NaLibApi.DTO;
 using NaLibApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ public class ContactTypeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(ContactType newContactType)
+    public async Task<IActionResult> Post(ContactTypeDto newContactType)
     {
         await _contactTypeService.CreateAsync(newContactType);
 
@@ -39,7 +40,7 @@ public class ContactTypeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, ContactType updatedContactType)
+    public async Task<IActionResult> Update(int id, ContactTypeDto updatedContactType)
     {
         var ContactType = await _contactTypeService.GetAsync(id);
 
@@ -47,8 +48,6 @@ public class ContactTypeController : ControllerBase
         {
             return NotFound();
         }
-
-        updatedContactType.Id = ContactType.Id;
 
         await _contactTypeService.UpdateAsync(id, updatedContactType);
 
