@@ -1,5 +1,6 @@
 using NaLibApi.Data;
 using NaLibApi.Models;
+using NaLibApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,10 @@ builder.Services.AddDbContext<NaLibDbContext>(options =>
 });
 
 // Add mongodb connection string to the configuration
-builder.Services.Configure<NoSQLDbContext>(builder.Configuration.GetSection("NoSQLConnection"));
+builder.Services.Configure<NoSQLDbContext>(configuration.GetSection("NoSQLConnection"));
+
+// Add services to the container.  
+builder.Services.AddSingleton<CatalogService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -29,7 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

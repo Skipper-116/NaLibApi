@@ -9,6 +9,7 @@ namespace NaLibApi.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [BsonIgnoreIfDefault]
         public string Id { get; set; }
         public string EventType { get; set; }
         public string CatalogId { get; set; }

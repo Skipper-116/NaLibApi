@@ -8,7 +8,8 @@ namespace NaLibApi.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [BsonIgnoreIfDefault]
+        public string? Id { get; set; }
         public string Title { get; set; }
         public string[] Authors { get; set; }
         public string Publisher { get; set; }

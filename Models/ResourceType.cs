@@ -8,6 +8,7 @@ namespace NaLibApi.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [BsonIgnoreIfDefault]
         public string Id { get; set; }
 
         [BsonElement("name")]
