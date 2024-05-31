@@ -1,8 +1,4 @@
-using NaLibApi.Data;
-using NaLibApi.Models;
-using NaLibApi.Services;
 using NaLibApi.Middlewares;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

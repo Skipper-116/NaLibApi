@@ -10,7 +10,7 @@
   },
   "NoSQLConnection": {
     "ConnectionString": "mongodb://username:strongpassword@localhost:27017/?authMechanism=DEFAULT",
-    "DatabaseName": "LibaryDB",
+    "DatabaseName": "LibraryDB",
     "CatalogCollectionName": "Catalogs",
     "CatalogsEventsCollectionName": "CatalogsEvents",
     "ResourceTypesCollectionName": "ResourceTypes"
@@ -18,6 +18,7 @@
   "Jwt": {
     "Issuer": "Nalib",
     "Audience": "Nalib",
-    "Key": "supersecretkey@123"
+    "Key": "7xg8vysaqj2exi3k6z4w1b7y8z2x9c5v",
+    "Duration": 2
   }
 }

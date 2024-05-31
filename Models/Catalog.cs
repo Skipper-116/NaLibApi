@@ -1,6 +1,5 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
 using System.Text.Json.Serialization;
 
 namespace NaLibApi.Models
@@ -17,8 +16,7 @@ namespace NaLibApi.Models
         public string Title { get; set; }
         [BsonElement("authors")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public string[] Authors { get; set; }
+        public List<string> Authors { get; set; }
         [BsonElement("publisher")]
         [BsonRequired]
         [BsonRepresentation(BsonType.String)]
@@ -33,20 +31,17 @@ namespace NaLibApi.Models
         public DateTime PublicationDate { get; set; }
         [BsonElement("subjects")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public string[] Subjects { get; set; }
+        public List<string> Subjects { get; set; }
         [BsonElement("genres")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public string[] Genres { get; set; }
+        public List<string> Genres { get; set; }
         [BsonElement("language")]
         [BsonRequired]
         [BsonRepresentation(BsonType.String)]
         public string Language { get; set; }
         [BsonElement("keywords")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public string[] Keywords { get; set; }
+        public List<string> Keywords { get; set; }
         [BsonElement("classificationNumber")]
         [BsonRequired]
         [BsonRepresentation(BsonType.String)]
@@ -56,23 +51,19 @@ namespace NaLibApi.Models
         public PhysicalDescription Description { get; set; }
         [BsonElement("history")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
         public PublicationHistory[] History { get; set; }
         [BsonElement("seriesInfo")]
         [BsonRequired]
         public Series SeriesInfo { get; set; }
         [BsonElement("holdings")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public Holding[] Holdings { get; set; }
+        public List<Holding> Holdings { get; set; }
         [BsonElement("reviews")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public Review[] Reviews { get; set; }
+        public List<Review> Reviews { get; set; }
         [BsonElement("tableOfContents")]
         [BsonRequired]
-        [BsonRepresentation(BsonType.Array)]
-        public Content[] TableOfContents { get; set; }
+        public List<Content> TableOfContents { get; set; }
         [BsonElement("libraryId")]
         [BsonRequired]
         [BsonRepresentation(BsonType.Int32)]

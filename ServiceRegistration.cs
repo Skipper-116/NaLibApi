@@ -23,5 +23,7 @@ public static class ServiceRegistration
 
         // PostgreSQL
         services.AddScoped<ContactTypeService>();
+        services.AddScoped<UserService>();
+        services.AddScoped<AuthenticationService>();
     }
 }
